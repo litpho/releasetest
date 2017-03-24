@@ -50,3 +50,9 @@ allprojects {
         }
     }
 }
+
+project(':b') {
+    dependencies {
+        compile project(':a')
+    }
+}
