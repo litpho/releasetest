@@ -9,15 +9,15 @@ buildscript {
     }
 }
 
-apply plugin: 'net.researchgate.release'
-
-release {
-    buildTasks = ['build']
-}
-
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
+
+    apply plugin: 'net.researchgate.release'
+
+    release {
+        buildTasks = ['build']
+    }
 
     sourceCompatibility = 1.8
 
