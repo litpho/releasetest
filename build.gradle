@@ -1,6 +1,17 @@
+import org.ajoberstar.gradle.git.release.semver.RebuildVersionStrategy
+import org.ajoberstar.gradle.git.release.opinion.Strategies
+
 plugins {
     id 'org.ajoberstar.grgit' version '1.6.0'
-    id 'org.ajoberstar.release-opinion' version '1.6.0'
+    id 'org.ajoberstar.release-base' version '1.6.0'
+}
+
+release {
+    versionStrategy RebuildVersionStrategy.INSTANCE
+    versionStrategy Strategies.SNAPSHOT
+    versionStrategy Strategies.PRE_RELEASE
+    versionStrategy Strategies.FINAL
+    defaultVersionStrategy = Strategies.SNAPSHOT
 }
 
 subprojects {
