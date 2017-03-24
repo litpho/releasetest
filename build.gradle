@@ -1,21 +1,11 @@
-buildscript {
-    repositories {
-        maven {
-            url 'https://plugins.gradle.org/m2/'
-        }
-    }
-    dependencies {
-        classpath 'net.researchgate:gradle-release:2.4.0'
-    }
+plugins {
+    id 'org.ajoberstar.grgit' version '1.6.0'
+    id 'org.ajoberstar.release-opinion' version '1.6.0'
 }
 
-apply plugin: 'net.researchgate.release'
+subprojects {
+    version = rootProject.version.toString()
 
-release {
-    buildTasks = ['build']
-}
-
-allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
@@ -25,8 +15,8 @@ allprojects {
         compile 'org.slf4j:slf4j-api:1.7.21'
     }
 
-    rootProject.tasks.runBuildTasks.dependsOn build
-    rootProject.tasks.afterReleaseBuild.dependsOn publish
+    rootProject.tasks.release.dependsOn build
+    rootProject.tasks.release.dependsOn publish
 
     publishing {
         repositories {
