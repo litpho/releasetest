@@ -15,7 +15,7 @@ release {
     buildTasks = ['build']
 }
 
-allprojects {
+subprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
