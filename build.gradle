@@ -44,7 +44,9 @@ allprojects {
         }
 
         publications {
-            plugin(MavenPublication) { artifact(jar)  }
+            mavenJava(MavenPublication) {
+                from components.java
+            }
         }
     }
 }
