@@ -26,42 +26,26 @@ allprojects {
     }
 
     rootProject.tasks.runBuildTasks.dependsOn build
-    rootProject.tasks.afterReleaseBuild.dependsOn publishMavenJavaPublicationToMavenRepository
+    rootProject.tasks.afterReleaseBuild.dependsOn publish
 
     publishing {
-//        repositories {
-//            maven {
-//                if (project.version.endsWith('-SNAPSHOT')) {
-//                    url "${nexusSnapshotRepository}"
-//                } else {
-//                    url "${nexusReleaseRepository}"
-//                }
-//                credentials {
-//                    username "${nexusUsername}"
-//                    password "${nexusPassword}"
-//                }
-//            }
-//        }
+        repositories {
+            maven {
+                if (project.version.endsWith('-SNAPSHOT')) {
+                    url "${nexusSnapshotRepository}"
+                } else {
+                    url "${nexusReleaseRepository}"
+                }
+                credentials {
+                    username "${nexusUsername}"
+                    password "${nexusPassword}"
+                }
+            }
+        }
 
         publications {
             mavenJava(MavenPublication) {
                 from components.java
-            }
-        }
-    }
-}
-
-publishing {
-    repositories {
-        maven {
-            if (project.version.endsWith('-SNAPSHOT')) {
-                url "${nexusSnapshotRepository}"
-            } else {
-                url "${nexusReleaseRepository}"
-            }
-            credentials {
-                username "${nexusUsername}"
-                password "${nexusPassword}"
             }
         }
     }
