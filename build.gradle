@@ -9,14 +9,13 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
 apply plugin: 'net.researchgate.release'
 
 release {
     buildTasks = ['build']
 }
 
-subprojects {
+allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
@@ -27,26 +26,42 @@ subprojects {
     }
 
     rootProject.tasks.runBuildTasks.dependsOn build
-    rootProject.tasks.afterReleaseBuild.dependsOn publish
+    rootProject.tasks.afterReleaseBuild.dependsOn publishMavenJavaPublicationToMavenRepository
 
     publishing {
-        repositories {
-            maven {
-                if (project.version.endsWith('-SNAPSHOT')) {
-                    url "${nexusSnapshotRepository}"
-                } else {
-                    url "${nexusReleaseRepository}"
-                }
-                credentials {
-                    username "${nexusUsername}"
-                    password "${nexusPassword}"
-                }
-            }
-        }
+//        repositories {
+//            maven {
+//                if (project.version.endsWith('-SNAPSHOT')) {
+//                    url "${nexusSnapshotRepository}"
+//                } else {
+//                    url "${nexusReleaseRepository}"
+//                }
+//                credentials {
+//                    username "${nexusUsername}"
+//                    password "${nexusPassword}"
+//                }
+//            }
+//        }
 
         publications {
             mavenJava(MavenPublication) {
                 from components.java
+            }
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            if (project.version.endsWith('-SNAPSHOT')) {
+                url "${nexusSnapshotRepository}"
+            } else {
+                url "${nexusReleaseRepository}"
+            }
+            credentials {
+                username "${nexusUsername}"
+                password "${nexusPassword}"
             }
         }
     }
