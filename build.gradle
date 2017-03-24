@@ -9,6 +9,7 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'net.researchgate.release'
 
 release {
