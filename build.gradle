@@ -15,7 +15,7 @@ release {
 }
 
 subprojects {
-    version = rootProject.version.toString()
+//    version = rootProject.version.toString()
 
     apply plugin: 'java'
     apply plugin: 'maven-publish'
