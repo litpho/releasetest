@@ -32,7 +32,7 @@ subprojects {
     publishing {
         repositories {
             maven {
-                if (project.version.endsWith('-SNAPSHOT')) {
+                if (project.version.toString().endsWith('-SNAPSHOT')) {
                     url "${nexusSnapshotRepository}"
                 } else {
                     url "${nexusReleaseRepository}"
