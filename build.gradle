@@ -1,19 +1,10 @@
 import org.ajoberstar.gradle.git.release.semver.RebuildVersionStrategy
 import org.ajoberstar.gradle.git.release.opinion.Strategies
 
-buildscript {
-  repositories {
-    mavenLocal()
-    jcenter()
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'org.ajoberstar:gradle-git:1.7.1-dev.1.uncommitted+fe8d229'
-  }
+plugins {
+    id 'org.ajoberstar.grgit' version '1.6.0'
+    id 'org.ajoberstar.release-base' version '1.6.0'
 }
-
-apply plugin: 'org.ajoberstar.grgit'
-apply plugin: 'org.ajoberstar.release-base'
 
 release {
     versionStrategy RebuildVersionStrategy.INSTANCE
@@ -24,6 +15,8 @@ release {
 }
 
 subprojects {
+//    version = rootProject.version.toString()
+
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
@@ -39,7 +32,15 @@ subprojects {
     publishing {
         repositories {
             maven {
-                url 'file://d:/temp/nexus'
+                if (project.version.toString().endsWith('-SNAPSHOT')) {
+                    url "${nexusSnapshotRepository}"
+                } else {
+                    url "${nexusReleaseRepository}"
+                }
+                credentials {
+                    username "${nexusUsername}"
+                    password "${nexusPassword}"
+                }
             }
         }
 
