@@ -1,0 +1,12 @@
+= ReleaseTest project
+Jasper de Vries <jasper.devries@ns.nl>
+v1.0, 10-05-2017
+:toc: left
+:toc=title: Inhoud
+:numbered:
+
+== Introductie
+Dit is een test README om te zien of deze in Bitbucket correct functioneert in de root.
+
+== Referenties
+http://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc Quick reference]
