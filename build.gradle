@@ -38,6 +38,14 @@ project(':b') {
 project(':c') {
     apply plugin: 'application'
 
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from tasks.distZip
+            }
+        }
+    }
+
     dependencies {
         compile project(':b')
     }
