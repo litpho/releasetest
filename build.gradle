@@ -38,13 +38,7 @@ project(':b') {
 project(':c') {
     apply plugin: 'application'
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from tasks.distZip
-            }
-        }
-    }
+    mainClassName = 'nl.donna.test.Main'
 
     dependencies {
         compile project(':b')
