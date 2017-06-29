@@ -2,13 +2,13 @@ plugins {
   id 'net.researchgate.release' version '2.4.0'
 }
 
-afterReleaseBuild.dependsOn publish
-
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
+
+    project.rootProject.tasks.afterReleaseBuild.dependsOn publish
 
     dependencies {
         compile 'org.slf4j:slf4j-api:1.7.21'
