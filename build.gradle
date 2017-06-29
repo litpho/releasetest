@@ -1,14 +1,14 @@
 plugins {
-    id 'pl.allegro.tech.build.axion-release' version '1.7.0'
+    id 'nebula.release' version '4.2.0'
 }
 
-project.version = scmVersion.version
-
-allprojects {
+subprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
+
+    rootProject.tasks.release.dependsOn publish
 
     dependencies {
         compile 'org.slf4j:slf4j-api:1.7.21'
@@ -28,9 +28,6 @@ allprojects {
         }
     }
 }
-
-//afterReleaseBuild.dependsOn allprojects*.build
-//afterReleaseBuild.dependsOn allprojects*.publish
 
 project(':b') {
     dependencies {
