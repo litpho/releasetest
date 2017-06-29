@@ -34,3 +34,11 @@ project(':b') {
         compile project(':a')
     }
 }
+
+project(':c') {
+    apply plugin: 'application'
+
+    dependencies {
+        compile project(':b')
+    }
+}
