@@ -27,6 +27,7 @@ allprojects {
     }
 }
 
+afterReleaseBuild.dependsOn subprojects*.build
 afterReleaseBuild.dependsOn subprojects*.publish
 
 project(':b') {
