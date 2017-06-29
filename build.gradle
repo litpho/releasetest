@@ -1,22 +1,8 @@
-import org.ajoberstar.gradle.git.release.semver.RebuildVersionStrategy
-import org.ajoberstar.gradle.git.release.opinion.Strategies
-
 plugins {
-    id 'org.ajoberstar.grgit' version '1.6.0'
-    id 'org.ajoberstar.release-base' version '1.6.0'
+  id 'net.researchgate.release' version '2.4.0'
 }
 
-release {
-    versionStrategy RebuildVersionStrategy.INSTANCE
-    versionStrategy Strategies.SNAPSHOT
-    versionStrategy Strategies.PRE_RELEASE
-    versionStrategy Strategies.FINAL
-    defaultVersionStrategy = Strategies.SNAPSHOT
-}
-
-subprojects {
-//    version = rootProject.version.toString()
-
+allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
 
@@ -26,21 +12,10 @@ subprojects {
         compile 'org.slf4j:slf4j-api:1.7.21'
     }
 
-    rootProject.tasks.release.dependsOn build
-    rootProject.tasks.release.dependsOn publish
-
     publishing {
         repositories {
             maven {
-                if (project.version.toString().endsWith('-SNAPSHOT')) {
-                    url "${nexusSnapshotRepository}"
-                } else {
-                    url "${nexusReleaseRepository}"
-                }
-                credentials {
-                    username "${nexusUsername}"
-                    password "${nexusPassword}"
-                }
+                url file('D:/Temp/releases')
             }
         }
 
