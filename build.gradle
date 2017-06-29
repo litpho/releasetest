@@ -1,5 +1,6 @@
 plugins {
-  id 'net.researchgate.release' version '2.4.0'
+    // id 'net.researchgate.release' version '2.4.0'
+    id "org.patuf.gradle-release-plugin" version "0.0.3"
 }
 
 allprojects {
@@ -27,8 +28,8 @@ allprojects {
     }
 }
 
-afterReleaseBuild.dependsOn allprojects*.build
-afterReleaseBuild.dependsOn allprojects*.publish
+//afterReleaseBuild.dependsOn allprojects*.build
+//afterReleaseBuild.dependsOn allprojects*.publish
 
 project(':b') {
     dependencies {
