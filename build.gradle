@@ -1,7 +1,8 @@
 plugins {
-    // id 'net.researchgate.release' version '2.4.0'
-    id "org.patuf.gradle-release-plugin" version "0.0.3"
+    id 'pl.allegro.tech.build.axion-release' version '1.7.0'
 }
+
+project.version = scmVersion.version
 
 allprojects {
     apply plugin: 'java'
