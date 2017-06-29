@@ -2,6 +2,8 @@ plugins {
   id 'net.researchgate.release' version '2.4.0'
 }
 
+afterReleaseBuild.dependsOn publish
+
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
@@ -15,7 +17,7 @@ allprojects {
     publishing {
         repositories {
             maven {
-                url file('D:/Temp/releases')
+                url file('D:/Tempro/releases')
             }
         }
 
