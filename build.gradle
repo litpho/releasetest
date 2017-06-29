@@ -8,8 +8,6 @@ allprojects {
 
     sourceCompatibility = 1.8
 
-    project.rootProject.tasks.afterReleaseBuild.dependsOn publish
-
     dependencies {
         compile 'org.slf4j:slf4j-api:1.7.21'
     }
@@ -28,6 +26,8 @@ allprojects {
         }
     }
 }
+
+afterReleaseBuild.dependsOn subprojects*.publish
 
 project(':b') {
     dependencies {
