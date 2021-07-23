@@ -1,7 +1,7 @@
 buildscript {
     dependencies {
         classpath 'nl.donna.gradle:donna-release-plugin:1.41.0-feature-BNDT-293-task-annotations-SNAPSHOT'
-        classpath 'org.eclipse.jgit:org.eclipse.jgit.ssh.jsch:5.8.0.202006091008-r'
+//        classpath 'org.eclipse.jgit:org.eclipse.jgit.ssh.jsch:5.8.0.202006091008-r'
     }
 }
 
