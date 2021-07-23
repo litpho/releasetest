@@ -1,6 +1,10 @@
-plugins {
-    id 'nebula.release' version '6.0.0'
+buildscript {
+    dependencies {
+        classpath 'nl.donna.gradle:donna-release-plugin:1.41.0-feature-BNDT-293-task-annotations-SNAPSHOT'
+    }
 }
+
+apply plugin: 'nl.donna.gradle.donna-release'
 
 subprojects { project ->
     apply plugin: 'java'
@@ -8,10 +12,8 @@ subprojects { project ->
 
     sourceCompatibility = 1.8
 
-    rootProject.tasks.release.dependsOn publish
-
     dependencies {
-        compile 'org.slf4j:slf4j-api:1.7.21'
+        implementation 'org.slf4j:slf4j-api:1.7.21'
     }
 
     publishing {
@@ -25,8 +27,6 @@ subprojects { project ->
             mavenJava(MavenPublication) {
                 if (project.name != 'c') {
                     from components.java
-                } else {
-                    artifact tasks.distZip
                 }
             }
         }
@@ -35,7 +35,7 @@ subprojects { project ->
 
 project(':b') {
     dependencies {
-        compile project(':a')
+        implementation project(':a')
     }
 }
 
@@ -45,6 +45,6 @@ project(':c') {
     mainClassName = 'nl.donna.test.Main'
 
     dependencies {
-        compile project(':b')
+        implementation project(':b')
     }
 }
